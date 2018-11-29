@@ -38,5 +38,13 @@ describe('nextGeneration',() => {
     assert.ok(isSame(actualNextGen,expectedNextGen));
     assert.ok(isSameArity(actualNextGen,expectedNextGen));
   });
+  it('should return the same generation',() => {
+    let currentGeneration = [[2,3],[2,4],[3,2],[3,5],[4,3],[4,4]];
+    let expectedNextGen = [[2,3],[2,4],[3,2],[3,5],[4,3],[4,4]]; 
+    let bounds = {topLeft: [1,1], bottomRight: [5,6]};
+    let actualNextGen = nextGeneration(currentGeneration,bounds);
+    assert.ok(isSame(actualNextGen,expectedNextGen));
+    assert.ok(isSameArity(actualNextGen,expectedNextGen));
+  });
 });
 
