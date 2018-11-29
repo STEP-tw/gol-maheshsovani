@@ -12,13 +12,10 @@ const findNeighboursOfCell = function(cell,bounds) {
 }
 
 const findAllNeighbours = function(bounds){
+  let limits = bounds["bottomRight"].concat(bounds["topLeft"])
   let allNeighbours = {}
-  let rowStartPoint= bounds.topLeft[0];
-  let columnStartPoint= bounds.topLeft[1];
-  let rowEndPoint= bounds.bottomRight[0];
-  let columnEndPoint= bounds.bottomRight[1];
-  for (let row = rowStartPoint; row<=rowEndPoint ; row++) {
-    for (let column = columnStartPoint; column<=columnEndPoint ; column++) {
+  for (let row =  limits[2]; row<=limits[0] ; row++) {
+    for (let column = limits[3]; column<=limits[1] ; column++) {
       allNeighbours["["+row+", "+column+"]"] = findNeighboursOfCell([row, column], bounds);
     }
   }
@@ -26,13 +23,8 @@ const findAllNeighbours = function(bounds){
 }
 
 const calculateAliveNeighboursOfCell = function(allNeighbours, currentGeneration, cell){
-  let numberOfAliveNeighbours = 0;
-  let neighboursOfCell = allNeighbours[cell];
-  for (let neighbour of neighboursOfCell){
-    let isAlive = contains(currentGeneration, neighbour); 
-    if(isAlive) { numberOfAliveNeighbours++; }
-  }
-  return numberOfAliveNeighbours;
+  let isAlive = contains.bind(null,currentGeneration);
+  return allNeighbours[cell].filter(isAlive).length;
 }
 
 const aliveNeighboursCalculator = function(allNeighbours, currentGeneration) {
