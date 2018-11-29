@@ -11,7 +11,7 @@ const validateNeighbours = function(bounds,neighbour) {
   let startPoint = bounds.topLeft;
   let endPopint = bounds.bottomRight;
   let isValid = neighbour[0] >= startPoint[0] && neighbour[0] <= endPopint[0];
-  isValid = neighbour[1] >= startPoint[1] && neighbour[1] <= endPopint[1];
+  isValid = isValid && neighbour[1] >= startPoint[1] && neighbour[1] <= endPopint[1];
   return isValid;
 }
 
