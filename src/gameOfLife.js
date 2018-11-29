@@ -13,10 +13,12 @@ const findNeighboursOfCell = function(cell,bounds) {
 
 const findAllNeighbours = function(bounds){
   let allNeighbours = {}
-  let startPoint= bounds.topLeft[0];
-  let endPoint= bounds.bottomRight[0];
-  for (let row = startPoint; row<=endPoint;row++) {
-    for (let column = startPoint; column<=endPoint ; column++) {
+  let rowStartPoint= bounds.topLeft[0];
+  let columnStartPoint= bounds.topLeft[1];
+  let rowEndPoint= bounds.bottomRight[0];
+  let columnEndPoint= bounds.bottomRight[1];
+  for (let row = rwoStartPoint; row<=rowEndPoint;row++) {
+    for (let column = columnStartPoint; column<=columnEndPoint ; column++) {
       allNeighbours["["+row+", "+column+"]"] = findNeighboursOfCell([row, column], bounds);
     }
   }
@@ -50,6 +52,7 @@ const calculateAliveNeighbours = function(allNeighbours, currentGeneration){
 
 const nextGeneration = function(currentGeneration,bounds){
   let allNeighbours = findAllNeighbours(bounds);
+  console.log(allNeighbours);
   let neighboursState = calculateAliveNeighbours(allNeighbours,currentGeneration);
   let aliveCells = [];
   let allCells = Object.keys(neighboursState);
