@@ -15,13 +15,13 @@ const handleUserInput = function(){
   return initialUniverseState;
 }
 
-const findNeighboursOfCell = function(cell,endPoint) {
+const findNeighboursOfCell = function(cell,bounds) {
   let xCoordinates = [cell[0]-1, cell[0], cell[0]+1];
   let yCoordinates = [cell[1]-1, cell[1], cell[1]+1];
   let zip = zipper(yCoordinates);
   let allNeighbours = xCoordinates.reduce(zip, []);
   allNeighbours.splice(4,1);
-  validateNeighbour = validateNeighbours.bind(null,endPoint);
+  validateNeighbour = validateNeighbours.bind(null,bounds);
   let allValidNeighbours = allNeighbours.filter(validateNeighbour);
   return allValidNeighbours;
 }
@@ -32,7 +32,7 @@ const findAllNeighbours = function(bounds){
   let endPoint= bounds.bottomRight[0];
   for (let row = startPoint; row<=endPoint;row++) {
     for (let column = startPoint; column<=endPoint ; column++) {
-      allNeighbours["["+row+", "+column+"]"] = findNeighboursOfCell([row, column], endPoint);
+      allNeighbours["["+row+", "+column+"]"] = findNeighboursOfCell([row, column], bounds);
     }
   }
   return allNeighbours;
