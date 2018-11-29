@@ -22,5 +22,13 @@ describe('nextGeneration',() => {
     assert.ok(isSame(actualNextGen, expectedNextGen));
     assert.ok(isSameArity(actualNextGen, expectedNextGen));
   });
+  it("should return a generation with two horizontal alive cells", () => {
+    let currentGeneration = [[0,2],[1,1],[2,2]];
+    let expectedNextGen = [[1,1],[1,2]];
+    let bounds = {topLeft: [0, 0], bottomRight: [2,3]};
+    let actualNextGen = nextGeneration(currentGeneration, bounds);
+    assert.ok(isSame(actualNextGen, expectedNextGen));
+    assert.ok(isSameArity(actualNextGen, expectedNextGen));
+  });
 });
 
