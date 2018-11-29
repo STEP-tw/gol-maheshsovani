@@ -6,7 +6,7 @@ const findNeighboursOfCell = function(cell,bounds) {
   let zip = zipper(yCoordinates);
   let allNeighbours = xCoordinates.reduce(zip, []);
   allNeighbours.splice(4,1);
-  validateNeighbour = validateNeighbours.bind(null,bounds);
+  let validateNeighbour = validateNeighbours.bind(null,bounds);
   let allValidNeighbours = allNeighbours.filter(validateNeighbour);
   return allValidNeighbours;
 }
@@ -17,7 +17,7 @@ const findAllNeighbours = function(bounds){
   let columnStartPoint= bounds.topLeft[1];
   let rowEndPoint= bounds.bottomRight[0];
   let columnEndPoint= bounds.bottomRight[1];
-  for (let row = rwoStartPoint; row<=rowEndPoint;row++) {
+  for (let row = rowStartPoint; row<=rowEndPoint ; row++) {
     for (let column = columnStartPoint; column<=columnEndPoint ; column++) {
       allNeighbours["["+row+", "+column+"]"] = findNeighboursOfCell([row, column], bounds);
     }
@@ -52,7 +52,6 @@ const calculateAliveNeighbours = function(allNeighbours, currentGeneration){
 
 const nextGeneration = function(currentGeneration,bounds){
   let allNeighbours = findAllNeighbours(bounds);
-  console.log(allNeighbours);
   let neighboursState = calculateAliveNeighbours(allNeighbours,currentGeneration);
   let aliveCells = [];
   let allCells = Object.keys(neighboursState);

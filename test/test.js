@@ -24,7 +24,7 @@ describe('nextGeneration',() => {
   });
   it.only("should return a generation with two horizontal alive cells", () => {
     let currentGeneration = [[0,2],[0, 3],[2,2]];
-    let expectedNextGen = [[1,3]];
+    let expectedNextGen = [[1,2],[1,3]];
     let bounds = {topLeft: [0, 0], bottomRight: [2,3]};
     let actualNextGen = nextGeneration(currentGeneration, bounds);
     assert.ok(isSame(actualNextGen, expectedNextGen));

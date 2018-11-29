@@ -7,10 +7,10 @@ const zipper = function(yCoordinates) {
   }
 }
 
-validateNeighbours = function(bounds,neighbour) {
-  let startPoint = bounds.topLeft[0];
-  let endPopint = bounds.bottomRight[0];
-  let isNeighbourValid = neighbour.some(element => element < startPoint || element > endPopint);
+const validateNeighbours = function(bounds,neighbour) {
+  let startPoint = bounds.topLeft;
+  let endPopint = bounds.bottomRight;
+  let isNeighbourValid = neighbour.some((element,index) => element < startPoint[index] || element > endPopint[index]);
   return !isNeighbourValid;
 }
 
