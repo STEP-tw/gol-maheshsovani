@@ -10,8 +10,9 @@ const zipper = function(yCoordinates) {
 const validateNeighbours = function(bounds,neighbour) {
   let startPoint = bounds.topLeft;
   let endPopint = bounds.bottomRight;
-  let isNeighbourValid = neighbour.some((element,index) => element < startPoint[index] || element > endPopint[index]);
-  return !isNeighbourValid;
+  let isValid = neighbour[0] >= startPoint[0] && neighbour[0] <= endPopint[0];
+  isValid = neighbour[1] >= startPoint[1] && neighbour[1] <= endPopint[1];
+  return isValid;
 }
 
 const contains = function(currentGeneration, neighbour) {
