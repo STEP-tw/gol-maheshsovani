@@ -14,5 +14,13 @@ describe('nextGeneration',() => {
     assert.ok(isSame(actualNextGen, expectedNextGen));
     assert.ok(isSameArity(actualNextGen, expectedNextGen));
   });
+  it("should return an empty generation for a current generation that contains only one live cell", () => {
+    let currentGeneration = [[-3,-1],[-2,-5],[1,0],[-1,-1]];
+    let expectedNextGen = [];
+    let bounds = {topLeft: [-2, -2], bottomRight: [0,0]};
+    let actualNextGen = nextGeneration(currentGeneration, bounds);
+    assert.ok(isSame(actualNextGen, expectedNextGen));
+    assert.ok(isSameArity(actualNextGen, expectedNextGen));
+  });
 });
 
