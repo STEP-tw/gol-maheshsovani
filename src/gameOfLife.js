@@ -45,10 +45,7 @@ const calculateAliveNeighbours = function(allNeighbours, currentGeneration){
 const applyRules = function(neighboursState, currentGeneration) {
  return function(cell) {
    let isAlive = neighboursState[cell] === 3;
-   if(isAlive) {
-     return isAlive;
-   }
-   isAlive = neighboursState[cell] === 2 && contains(currentGeneration, JSON.parse(cell));
+   isAlive = isAlive || neighboursState[cell] === 2 && contains(currentGeneration, JSON.parse(cell));
    return isAlive;
  }
 }
