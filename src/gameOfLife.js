@@ -42,19 +42,17 @@ const calculateAliveNeighbours = function(allNeighbours, currentGeneration){
   return neighboursState;
 }
 
-const applyRules = function(neighboursState, currentGeneration) {
- return function(cell) {
+const applyRules = function(neighboursState, currentGeneration, cell) {
    let isAlive = neighboursState[cell] === 3;
    isAlive = isAlive || neighboursState[cell] === 2 && contains(currentGeneration, JSON.parse(cell));
    return isAlive;
- }
 }
 
 const nextGeneration = function(currentGeneration,bounds){
   let allNeighbours = findAllNeighbours(bounds);
   let neighboursState = calculateAliveNeighbours(allNeighbours,currentGeneration);
   let allCells = Object.keys(neighboursState);
-  let rulesApplier = applyRules(neighboursState, currentGeneration);
+  let rulesApplier = applyRules.bind(null, neighboursState, currentGeneration);
   let nextGen = allCells.filter(rulesApplier);
   nextGen = nextGen.map(cell => JSON.parse(cell));
   return nextGen;
